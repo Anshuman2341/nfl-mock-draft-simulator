@@ -1,7 +1,13 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import cors from "cors";
 import DraftEngine from "./draftEngine.js";
+import { getAIPick } from "./aiService.js";
 
+
+const port = process.env.PORT;
 const app = express();
 
 app.use(cors());
@@ -29,6 +35,31 @@ app.post("/api/pick", (req, res) => {
   res.json(draft.getState());
 });
 
-app.listen(5000, () => {
+app.post("/api/ai-pick", async (req, res) => {
+  const team = draft.getCurrentTeam();
+
+  const aiResult = await getAIPick(
+    team,
+    draft.availablePlayers
+  );
+
+  // Fallback: highest rank
+  let player = draft.availablePlayers.find(
+    p => p.name === aiResult
+  );
+
+  if (!player) {
+    player = draft.availablePlayers.sort(
+      (a, b) => a.rank - b.rank
+    )[0];
+  }
+
+  draft.makePick(player);
+
+  res.json(draft.getState());
+});
+
+
+app.listen(port, () => {
   console.log("Server running on 5000");
 });
