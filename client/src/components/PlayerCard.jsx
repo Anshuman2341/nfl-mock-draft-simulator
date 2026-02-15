@@ -1,18 +1,15 @@
-function PlayerCard({ player, onPick }) {
+function PlayerCard({ player, onPick, disabled }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        marginBottom: "10px"
-      }}
-    >
-      <span>
-        #{player.rank} {player.name} ({player.position})
-      </span>
+    <div className="player-card">
+      <h3>{player.name}</h3>
+      <p>{player.position}</p>
+      <p>Rank: {player.rank}</p>
 
-      <button onClick={() => onPick(player.id)}>
-        Draft
+      <button
+        disabled={disabled}
+        onClick={() => onPick(player.id)}
+      >
+        Pick
       </button>
     </div>
   );

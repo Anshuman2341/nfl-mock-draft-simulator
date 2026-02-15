@@ -1,18 +1,17 @@
 import PlayerCard from "./PlayerCard";
 
-function PlayerList({ players, onPick }) {
+function PlayerList({ players, onPick, disabled }) {
   return (
-    <>
-      <h2>Available Players</h2>
-
-      {players.map((player) => (
+    <div>
+      {players.map(player => (
         <PlayerCard
           key={player.id}
           player={player}
           onPick={onPick}
+          disabled={disabled}
         />
       ))}
-    </>
+    </div>
   );
 }
 
