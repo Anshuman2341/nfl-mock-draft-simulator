@@ -8,7 +8,27 @@ const players = [
   { id: 7, name: "Kool-Aid McKinstry", position: "CB", rank: 7 },
   { id: 8, name: "Brock Bowers", position: "TE", rank: 8 },
   { id: 9, name: "JC Latham", position: "OT", rank: 9 },
-  { id: 10, name: "Rome Odunze", position: "WR", rank: 10 }
+  { id: 10, name: "Rome Odunze", position: "WR", rank: 10 },
+  { id: 11, name: "Malik Nabers", position: "WR", rank: 11 },
+  { id: 12, name: "Jayden Daniels", position: "QB", rank: 12 },
+  { id: 13, name: "Jared Verse", position: "EDGE", rank: 13 },
+  { id: 14, name: "Laiatu Latu", position: "EDGE", rank: 14 },
+  { id: 15, name: "Terrion Arnold", position: "CB", rank: 15 },
+  { id: 16, name: "Bo Nix", position: "QB", rank: 16 },
+  { id: 17, name: "Michael Penix Jr", position: "QB", rank: 17 },
+  { id: 18, name: "Amarius Mims", position: "OT", rank: 18 },
+  { id: 19, name: "Taliese Fuaga", position: "OT", rank: 19 },
+  { id: 20, name: "Brian Thomas Jr", position: "WR", rank: 20 },
+  { id: 21, name: "Keon Coleman", position: "WR", rank: 21 },
+  { id: 22, name: "Cooper DeJean", position: "CB", rank: 22 },
+  { id: 23, name: "Quinyon Mitchell", position: "CB", rank: 23 },
+  { id: 24, name: "Graham Barton", position: "IOL", rank: 24 },
+  { id: 25, name: "Troy Fautanu", position: "OT", rank: 25 },
+  { id: 26, name: "Chop Robinson", position: "EDGE", rank: 26 },
+  { id: 27, name: "Jackson Powers-Johnson", position: "IOL", rank: 27 },
+  { id: 28, name: "Jer'Zhan Newton", position: "DT", rank: 28 },
+  { id: 29, name: "Nate Wiggins", position: "CB", rank: 29 },
+  { id: 30, name: "Adonai Mitchell", position: "WR", rank: 30 }
 ];
 
 export default players;

@@ -6,19 +6,27 @@ class DraftEngine {
     this.round = 1;
     this.pick = 1;
     this.maxRounds = 4;
+    this.maxTeams = 7;
 
-    // Deep copy (important)
+    this.draftOver = false;
+
     this.teams = JSON.parse(JSON.stringify(teamsData));
     this.availablePlayers = [...playersData];
 
     this.history = [];
   }
 
+
   getCurrentTeam() {
     return this.teams[this.pick - 1];
   }
 
   makePick(player) {
+
+    if (this.draftOver) {
+      throw new Error("Draft is already over");
+    }
+
     const team = this.getCurrentTeam();
 
     team.picks.push(player);
@@ -38,7 +46,17 @@ class DraftEngine {
   }
 
   nextTurn() {
-    if (this.pick < 7) {
+    // If already over, do nothing
+    if (this.draftOver) return;
+
+    // Last pick of last round
+    if (this.round === this.maxRounds && this.pick === this.maxTeams) {
+      this.draftOver = true;
+      return;
+    }
+
+    // Normal flow
+    if (this.pick < this.maxTeams) {
       this.pick++;
     } else {
       this.pick = 1;
@@ -46,9 +64,27 @@ class DraftEngine {
     }
   }
 
+
   isDraftOver() {
     return this.round > this.maxRounds;
   }
+
+  resetDraft() {
+    this.round = 1;
+    this.pick = 1;
+
+    this.teams = JSON.parse(JSON.stringify(teamsData));
+    this.availablePlayers = [...playersData];
+
+    this.history = [];
+    this.draftOver = false;
+  }
+
+  fullReset() {
+    this.resetDraft();
+  }
+
+
 
   getState() {
     return {
@@ -56,7 +92,8 @@ class DraftEngine {
       pick: this.pick,
       teams: this.teams,
       availablePlayers: this.availablePlayers,
-      history: this.history
+      history: this.history,
+      draftOver: this.draftOver
     };
   }
 }
