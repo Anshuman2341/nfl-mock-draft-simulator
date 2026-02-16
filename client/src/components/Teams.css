@@ -1,0 +1,18 @@
+.teams-wrapper {
+  width: 100%;
+  font-family: "Inter", sans-serif;
+}
+
+.teams-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.teams-header p {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #64748b;
+  text-transform: uppercase;
+}

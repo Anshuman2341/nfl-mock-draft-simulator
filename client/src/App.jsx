@@ -1,45 +1,44 @@
 import { useEffect, useState, useRef } from "react";
-import DraftHeader from "./components/DraftHeader";
-import PlayerList from "./components/PlayerList";
-import DraftHistory from "./components/DraftHistory";
-import EndDraft from "./components/EndDraft";
 
+import Layout from "./components/layout/Layout";
+import SelectionSection from "./components/sections/SelectionSection";
+import DraftSection from "./components/sections/DraftSection";
 
 function App() {
+
   const [state, setState] = useState(null);
   const [userTeamId, setUserTeamId] = useState(null);
   const [aiPicks, setAiPicks] = useState([]);
 
-  // Prevent multiple AI calls
   const aiRunning = useRef(false);
 
-  // Fetch state on load
+  /* ---------------- FETCH STATE ---------------- */
+
   useEffect(() => {
     fetchState();
   }, []);
 
-  // AI turn handler
+  const fetchState = async () => {
+    const res = await fetch("http://localhost:5000/api/state");
+    const data = await res.json();
+    setState(data);
+  };
+
+  /* ---------------- AI HANDLER ---------------- */
+
   useEffect(() => {
-    if (!state) return;
-    if (!userTeamId) return;
+
+    if (!state || !userTeamId) return;
     if (state.round > 4) return;
 
     const currentTeam = state.teams[state.pick - 1];
 
-    // 👉 If it's USER turn → Fetch AI Analysis
     if (currentTeam.id === userTeamId) {
-      console.log("User Turn → Fetching Analysis");
       fetchAnalysis();
       return;
     }
 
-    // 👉 If it's AI turn → Run AI Pick
-    if (
-      currentTeam.id !== userTeamId &&
-      !aiRunning.current
-    ) {
-
-      setAiPicks([]); // clear old data
+    if (!aiRunning.current) {
 
       aiRunning.current = true;
 
@@ -51,12 +50,7 @@ function App() {
 
   }, [state, userTeamId]);
 
-
-  const fetchState = async () => {
-    const res = await fetch("http://localhost:5000/api/state");
-    const data = await res.json();
-    setState(data);
-  };
+  /* ---------------- API CALLS ---------------- */
 
   const runAIPick = async () => {
     await fetch("http://localhost:5000/api/ai-pick", {
@@ -67,16 +61,16 @@ function App() {
   };
 
   const makePick = async (playerId) => {
+
     await fetch("http://localhost:5000/api/pick", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ playerId })
     });
 
     fetchState();
   };
+
   const resetDraft = async () => {
     await fetch("http://localhost:5000/api/reset-draft", {
       method: "POST"
@@ -86,6 +80,7 @@ function App() {
   };
 
   const fullReset = async () => {
+
     await fetch("http://localhost:5000/api/full-reset", {
       method: "POST"
     });
@@ -93,9 +88,6 @@ function App() {
     setUserTeamId(null);
     fetchState();
   };
-
-
-  // Pass Ai Analysis To the Frontend 
 
   const fetchAnalysis = async () => {
 
@@ -108,75 +100,54 @@ function App() {
 
       const data = await res.json();
 
-      if (data.players && data.players.length > 0) {
-        setAiPicks(data.players);
-      } else {
-        setAiPicks([]);
-      }
+      setAiPicks(data.players || []);
 
-    } catch (err) {
-      console.error("Analysis Error:", err);
+    } catch {
       setAiPicks([]);
     }
   };
 
+  /* ---------------- AUTO SCROLL ---------------- */
 
+  useEffect(() => {
 
+    if (userTeamId) {
+      document
+        .getElementById("draft-section")
+        ?.scrollIntoView({ behavior: "smooth" });
+    }
 
-  // Team selection screen
+  }, [userTeamId]);
+
+  /* ---------------- RENDER ---------------- */
+
   if (!state) return <h2>Loading...</h2>;
 
-  if (!userTeamId) {
-    return (
-      <div style={{ padding: "20px" }}>
-        <h1>Select Your Team</h1>
-        <h1>NFL Mock Draft Simulator</h1>
-        {state.teams.map(team => (
-          <button
-            key={team.id}
-            style={{ display: "block", margin: "10px" }}
-            onClick={() => setUserTeamId(team.id)}
-          >
-            {team.name}
-          </button>
-        ))}
-      </div>
-    );
-  }
-
-  const currentTeam = state.teams[state.pick - 1];
-
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>NFL Mock Draft Simulator</h1>
 
-      <DraftHeader
-        round={state.round}
-        pick={state.pick}
-        team={currentTeam.name}
-        onReset={resetDraft}
-        onSelectTeam={fullReset}
-        aiPicks={aiPicks}
+    <Layout>
+
+      {/* Selection Always Visible */}
+      <SelectionSection
+        onSelectTeam={setUserTeamId}
+        players={state.availablePlayers}
       />
 
+      {/* Draft Only After Team Pick */}
+      {userTeamId && (
 
-      {state.draftOver ? (
-
-        <EndDraft />
-
-      ) : (
-
-        <PlayerList
-          players={state.availablePlayers}
+        <DraftSection
+          state={state}
+          userTeamId={userTeamId}
+          aiPicks={aiPicks}
           onPick={makePick}
-          disabled={currentTeam.id !== userTeamId}
+          onReset={resetDraft}
+          onFullReset={fullReset}
         />
 
       )}
 
-
-      <DraftHistory history={state.history} />
-    </div>
+    </Layout>
   );
 }
 

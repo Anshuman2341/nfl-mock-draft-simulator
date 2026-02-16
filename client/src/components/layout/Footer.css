@@ -1,0 +1,100 @@
+/* Main Footer */
+.footer {
+  background: linear-gradient(135deg, #0d47a1, #1976d2);
+  color: #ffffff;
+  padding: 60px 20px 30px;
+  margin-top: 10px;
+}
+
+/* Logo */
+
+.footer-logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.footer-logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+.footer-logo {
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  text-decoration: none;
+  color: #ffffff;
+  background: #ffffff;
+  padding: 6px 16px;
+  border-radius: 6px;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.footer-logo:hover {
+  transform: scale(1.05);
+}
+
+/* Description */
+.footer-description {
+  max-width: 987px;
+  margin: 0 auto 35px 60px auto;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.7;
+  opacity: 0.95;
+  display: block;
+  padding-left: 60px;
+  /* visually shifts description to the right while keeping it readable */
+}
+
+/* Social Icons */
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.footer-social button {
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  color: #ffffff;
+  width: 42px;
+  height: 42px;
+  transition: all 0.25s ease;
+}
+
+.footer-social button:hover {
+  background: #ffffff;
+  color: #1976d2;
+  transform: translateY(-3px);
+}
+
+/* Copyright */
+.footer-copyright {
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-logo {
+    font-size: 28px;
+  }
+
+  .footer-description {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+
+  .footer-social button {
+    width: 38px;
+    height: 38px;
+  }
+}

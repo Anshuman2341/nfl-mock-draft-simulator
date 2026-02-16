@@ -1,38 +1,77 @@
-.ai-subtitle {
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 10px;
-}
-
-.ai-cards {
+/* Wrapper */
+.draft-header-wrapper {
+  padding: 18px 16px;
+  border: 2px solid #0a7dfa;
+  background: #0a7dfa;
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(10, 125, 250, 0.08);
   display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 
-.ai-card {
-  flex: 1;
-
-  background: #f9f9f9;
-  border-radius: 6px;
-
-  padding: 10px;
-  text-align: center;
-
-  border: 1px solid #ddd;
+/* Title */
+.draft-title {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 0;
 }
 
-.ai-card h4 {
-  margin: 5px 0;
-  font-size: 14px;
+/* Divider */
+.draft-divider {
+  margin: 10px 10% 10px 10%;
+  border-color: rgba(255,255,255,0.5) !important;
+  background: rgba(255,255,255,0.5) !important;
+  opacity: 0.5;
+  height: 2px;
+  border-width: 0 0 2px 0 !important;
+  border-radius: 2px;
 }
 
-.ai-card p {
-  margin: 0;
-  font-size: 13px;
+/* Reset Button */
+
+.reset-btn, .select-btn {
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  border: 1px solid #fff !important;
+  background: #0066cc !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  padding: 8px 18px !important;
+  transition: background 0.2s;
 }
 
-.ai-card span {
-  font-size: 12px;
-  color: #1976d2;
-  font-weight: bold;
+.reset-btn:hover, .select-btn:hover {
+  background: #0055aa !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+
+/* Select Team Button */
+
+/* Current Team */
+.current-team {
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0;
+}
+
+.current-team span {
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Needs */
+.needs-label {
+  font-weight: 700;
+  color: #fff;
+  margin-right: 4px;
+}
+
+.needs-list {
+  color: #fff;
+  opacity: 0.85;
 }

@@ -1,0 +1,28 @@
+.selection-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  align-items: stretch;
+  margin-top: 30px;
+  border: 2px solid #87ceeb; /* Sky blue border */
+  border-radius: 16px;
+  background: #f6fbff;
+  box-shadow: 0 2px 12px 0 rgba(135,206,235,0.08);
+  overflow: hidden;
+  min-height: 350px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.selection-layout > * {
+  flex: 1 1 0;
+  padding: 32px 24px;
+  border-right: 1px solid #e0f3fa;
+  background: transparent;
+  min-width: 0;
+}
+
+.selection-layout > *:last-child {
+  border-right: none;
+}

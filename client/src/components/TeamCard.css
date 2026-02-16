@@ -1,0 +1,32 @@
+.team-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 16px;
+  margin: 8px 0;
+
+  border: 1px solid #ddd;
+  border-radius: 8px;
+
+  cursor: pointer;
+  background: white;
+
+  transition: 0.2s;
+}
+
+.team-card:hover {
+  background: #f5f5f5;
+  transform: scale(1.02);
+}
+
+.team-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.team-name {
+  font-size: 16px;
+  font-weight: 500;
+}

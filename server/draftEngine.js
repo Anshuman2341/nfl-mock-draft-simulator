@@ -39,7 +39,8 @@ class DraftEngine {
       round: this.round,
       pick: this.pick,
       team: team.name,
-      player: player.name
+      player: player.name,
+      position : player.position,
     });
 
     this.nextTurn();

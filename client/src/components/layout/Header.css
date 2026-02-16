@@ -1,0 +1,82 @@
+/* =========================
+   HEADER BASE
+========================= */
+
+.draft-header {
+  background-color: #ffffff !important;
+
+  /* Soft, modern shadow similar to scrollbar thumb style */
+  box-shadow:
+    0 4px 24px 0 rgba(148, 163, 184, 0.18),
+    0 1.5px 4px 0 rgba(148, 163, 184, 0.10);
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 1200;
+}
+
+/* Layout */
+.header-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+/* =========================
+   LOGO BLOCK
+========================= */
+
+.logo-wrapper {
+  background-color: #0a7dfa;
+  color: #ffffff;
+
+  font-family: 'Montserrat', 'Oswald', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+
+  padding: 8px 18px;
+
+  display: inline-block;
+  line-height: 1.1;
+
+  /* Keep it sharp like original */
+  border-radius: 0px;
+}
+
+/* =========================
+   SOCIAL ICONS
+========================= */
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+/* Reduce size by ~10% */
+.social-icons .MuiIconButton-root {
+  width: 34px;
+  height: 34px;
+
+  border: 1px solid #000000;
+  border-radius: 0px; /* perfectly square */
+
+  color: #000000;
+  padding: 6px;
+
+  transition: all 0.2s ease;
+}
+
+/* Remove circle hover ripple feel */
+.social-icons .MuiTouchRipple-root {
+  display: none;
+}
+
+.social-icons .MuiIconButton-root:hover {
+  background-color: #000000;
+  color: #ffffff;
+}

@@ -1,0 +1,22 @@
+.selection-section {
+  min-height: 100vh;
+}
+
+.selection-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.divider {
+  flex: 1;
+  height: 2px;
+  background: #ccc;
+}
+
+.selection-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}

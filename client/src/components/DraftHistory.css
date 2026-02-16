@@ -1,0 +1,103 @@
+/* =========================
+   Container
+========================= */
+
+.draft-history-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* =========================
+   Title
+========================= */
+
+.draft-history-title {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
+}
+
+/* =========================
+   Table Wrapper
+========================= */
+
+.draft-table-wrapper {
+  overflow-x: auto;
+}
+
+/* =========================
+   Table Base
+========================= */
+
+.draft-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* =========================
+   Header
+========================= */
+
+.draft-table thead {
+  background-color: #0a7dfa;
+  color: white;
+}
+
+.draft-table th {
+  padding: 14px 10px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.draft-table th:last-child {
+  border-right: none;
+}
+
+/* =========================
+   Body
+========================= */
+
+.draft-table td {
+  padding: 14px 10px;
+  text-align: center;
+  font-size: 13px;
+  border-right: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  height: 60px;
+}
+
+.draft-table td:last-child {
+  border-right: none;
+}
+
+/* Zebra striping */
+.draft-table tbody tr:nth-child(odd) {
+  background-color: #f8f9fb;
+}
+
+/* Hover effect */
+.draft-table tbody tr:hover {
+  background-color: #eef4ff;
+}
+
+/* =========================
+   Round Column
+========================= */
+
+.round-header {
+  min-width: 100px;
+}
+
+.round-cell {
+  font-weight: 700;
+  background-color: #f1f3f6;
+}

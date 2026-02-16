@@ -1,0 +1,123 @@
+.top10-wrapper {
+  width: 100%;
+  font-family: "Inter", sans-serif;
+}
+
+/* HEADER */
+
+.top10-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.top10-header p {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.spacer {
+  height: 24px;
+}
+
+/* LIST */
+
+.top10-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  max-height: 420px;   /* Adjust based on row height (~5 rows visible) */
+  overflow-y: auto;
+
+  padding-right: 6px;  /* Prevent content cut by scrollbar */
+
+  scroll-behavior: smooth;
+}
+
+/* Clean scrollbar */
+.top10-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.top10-list::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.5);
+  border-radius: 10px;
+}
+
+.top10-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+/* PLAYER ROW CARD */
+
+.player-row {
+  display: grid;
+  grid-template-columns: 60px 1.5fr repeat(4, 1fr);
+  align-items: center;
+
+  padding: 16px 20px;
+
+  background: #ffffff;
+  border-radius: 12px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  transition: all 0.2s ease;
+}
+
+.player-row:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* RANK */
+
+.rank {
+  font-size: 16px;
+  font-weight: 700;
+  color: #dc2626;
+}
+
+/* NAME SECTION */
+
+.name-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.player-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: #0f172a;
+}
+
+.school {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* COLUMN DATA */
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.label {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+}
+
+.value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+}
