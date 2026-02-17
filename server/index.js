@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const port =process.env.PORT;
+const port =process.env.PORT || 5000;
 const draft = new DraftEngine();
 
 app.get("/api/state", (req, res) => {
@@ -71,6 +71,11 @@ app.post("/api/full-reset", (req, res) => {
   res.json(draft.getState());
 });
 
+app.get("/", (req, res) => {
+  res.send("Draft API Running ✅");
+});
+
 app.listen(port, () => {
   console.log(`serving on ${port}`);
 });
+
