@@ -1,10 +1,10 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import OpenAI from "openai";
+import Groq from "groq-sdk";
 
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+const client = new Groq({
+  apiKey: process.env.GROQ_API_KEY,
 });
 
 export async function getAIPick(team, players) {
@@ -15,7 +15,7 @@ Team needs: ${team.needs.join(", ")}
 
 Available players:
 ${players.map(p =>
-  `- ${p.name} (${p.position}, rank ${p.rank})`
+  `- ${p.name} (${p.position}, rank ${p.rank},grade ${p.grade},)`
 ).join("\n")}
 
 Pick the best player for this team.
@@ -25,7 +25,7 @@ No explanation.
 
   try {
     const response = await client.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "llama-3.1-8b-instant",
       messages: [
         { role: "system", content: "You are an NFL draft expert." },
         { role: "user", content: prompt }
@@ -36,7 +36,7 @@ No explanation.
     return response.choices[0].message.content.trim();
 
   } catch (err) {
-    console.error("AI Error:", err);
+    console.error("Groq AI Error:", err.response?.data || err.message);
     return null;
   }
 }
