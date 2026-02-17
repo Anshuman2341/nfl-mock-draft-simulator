@@ -1,3 +1,18 @@
+# =====================
+# Environment Variables
+# =====================
+.env
+server/.env
+client/.env
+
+# =====================
+# Node Modules
+# =====================
+node_modules/
+server/node_modules/
+client/node_modules/
+
+
 # Logs
 logs
 *.log

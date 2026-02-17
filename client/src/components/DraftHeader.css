@@ -1,9 +1,9 @@
 /* Wrapper */
 .draft-header-wrapper {
-  padding: 18px 16px;
+  padding: 18px 20px;
   border: 2px solid #0a7dfa;
   background: #0a7dfa;
-  border-radius: 18px;
+  border-radius: 6px;
   box-shadow: 0 2px 8px rgba(10, 125, 250, 0.08);
   display: flex;
   flex-direction: column;
@@ -37,7 +37,7 @@
   font-weight: 600 !important;
   text-transform: none !important;
   border: 1px solid #fff !important;
-  background: #0066cc !important;
+  background: #0a7dfa !important;
   color: #fff !important;
   box-shadow: none !important;
   padding: 8px 18px !important;

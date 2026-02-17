@@ -3,12 +3,14 @@ import { useEffect, useState, useRef } from "react";
 import Layout from "./components/layout/Layout";
 import SelectionSection from "./components/sections/SelectionSection";
 import DraftSection from "./components/sections/DraftSection";
+import './App.css'
 
 function App() {
 
   const [state, setState] = useState(null);
   const [userTeamId, setUserTeamId] = useState(null);
   const [aiPicks, setAiPicks] = useState([]);
+  const [page, setPage] = useState("selection");
 
   const aiRunning = useRef(false);
 
@@ -50,6 +52,14 @@ function App() {
 
   }, [state, userTeamId]);
 
+  // Page handle 
+
+  const handleTeamSelect = (teamId) => {
+    setUserTeamId(teamId);
+    setPage("draft");
+  };
+
+
   /* ---------------- API CALLS ---------------- */
 
   const runAIPick = async () => {
@@ -86,6 +96,8 @@ function App() {
     });
 
     setUserTeamId(null);
+    setPage("selection");
+
     fetchState();
   };
 
@@ -107,18 +119,6 @@ function App() {
     }
   };
 
-  /* ---------------- AUTO SCROLL ---------------- */
-
-  useEffect(() => {
-
-    if (userTeamId) {
-      document
-        .getElementById("draft-section")
-        ?.scrollIntoView({ behavior: "smooth" });
-    }
-
-  }, [userTeamId]);
-
   /* ---------------- RENDER ---------------- */
 
   if (!state) return <h2>Loading...</h2>;
@@ -127,14 +127,19 @@ function App() {
 
     <Layout>
 
-      {/* Selection Always Visible */}
-      <SelectionSection
-        onSelectTeam={setUserTeamId}
-        players={state.availablePlayers}
-      />
+      {/* PAGE 1: TEAM SELECTION */}
+      {page === "selection" && (
 
-      {/* Draft Only After Team Pick */}
-      {userTeamId && (
+        <SelectionSection
+          onSelectTeam={handleTeamSelect}
+          players={state.availablePlayers}
+        />
+
+      )}
+
+
+      {/* PAGE 2: DRAFT SIMULATOR */}
+      {page === "draft" && userTeamId && (
 
         <DraftSection
           state={state}

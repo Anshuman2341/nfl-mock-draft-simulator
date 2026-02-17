@@ -6,7 +6,12 @@ import Divider from "@mui/material/Divider";
 
 export default function SelectionSection({ onSelectTeam, players }) {
   return (
-    <Box component="section" sx={{ minHeight: '100vh', px: { xs: 1, sm: 2, md: 4 }, py: 4 }}>
+    <Box component="section"
+      sx={{
+        minHeight: "auto",   // remove 100vh
+        px: { xs: 1, sm: 2, md: 4 },
+        py: 2
+      }}>
       <Grid container alignItems="stretch" justifyContent="center" spacing={4}>
         <Grid item xs={12} md={5} display="flex" justifyContent="center" alignItems="stretch">
           <Box sx={{ width: '100%', maxWidth: 400, mx: 'auto', display: 'flex', flexDirection: 'column', height: '100%' }}>

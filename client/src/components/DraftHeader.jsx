@@ -20,27 +20,32 @@ function DraftHeader({
   onSelectTeam,
 }) {
   return (
-    <Stack spacing={3} className="draft-header-wrapper">
-
-      {/* Top Section: Title + Buttons */}
-      <Stack
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-        flexWrap="wrap"
-        spacing={2}
-      >
-        <Typography
-          variant="h5"
-          component="h2"
-          className="draft-title"
-        >
-          Round {round} | Pick {pick}
-        </Typography>
-
+    <Stack className="draft-header-wrapper" sx={{ width: '94%',margin:'9px 21px', gap: 2 }}>
+      <Stack direction={{ xs: 'column', md: 'row' }} alignItems="center" justifyContent="space-between" spacing={2}>
+        <Stack direction="row" alignItems="center" spacing={3} flexWrap="wrap">
+          <Typography
+            variant="h5"
+            component="h2"
+            className="draft-title"
+            sx={{ mb: 0 }}
+          >
+            Round {round} | Pick {pick}
+          </Typography>
+          <Typography variant="body1" className="current-team" sx={{ mb: 0 }}>
+            Current Team: <span>{team}</span>
+          </Typography>
+          {needs && needs.length > 0 && (
+            <Stack direction="row" spacing={1} flexWrap="wrap" alignItems="center">
+              <Typography variant="body1" className="needs-label">
+                Team Needs:
+              </Typography>
+              <Typography variant="body1" className="needs-list">
+                {needs.join(", ")}
+              </Typography>
+            </Stack>
+          )}
+        </Stack>
         <Stack direction="row" spacing={2}>
-
-          {/* Reset Button */}
           <Button
             variant="outlined"
             onClick={onReset}
@@ -49,8 +54,6 @@ function DraftHeader({
           >
             Reset Draft
           </Button>
-
-          {/* Select Team Button */}
           <Button
             variant="contained"
             onClick={onSelectTeam}
@@ -59,29 +62,8 @@ function DraftHeader({
           >
             Select Team
           </Button>
-
         </Stack>
       </Stack>
-
-      <Divider className="draft-divider" />
-
-      {/* Current Team */}
-      <Typography variant="body1" className="current-team">
-        Current Team: <span>{team}</span>
-      </Typography>
-
-      {/* Team Needs */}
-      {needs && needs.length > 0 && (
-        <Stack direction="row" spacing={1} flexWrap="wrap">
-          <Typography variant="body1" className="needs-label">
-            Team Needs:
-          </Typography>
-          <Typography variant="body1" className="needs-list">
-            {needs.join(", ")}
-          </Typography>
-        </Stack>
-      )}
-
     </Stack>
   );
 }

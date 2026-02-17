@@ -1,4 +1,3 @@
-import React from "react";
 import PlayerCard from "./PlayerCard";
 import Box from "@mui/material/Box";
 
@@ -8,7 +7,7 @@ function PlayerList({ players, onPick, disabled }) {
     <Box
       sx={{
         width: '95%',
-        margin: '0 auto',
+        margin: ' 32px 10px',
         display: 'grid',
         gridTemplateColumns: {
           xs: 'repeat(1, 1fr)',

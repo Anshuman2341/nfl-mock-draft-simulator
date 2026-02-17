@@ -41,7 +41,7 @@ function PlayerCard({ player, onPick, disabled }) {
             #{player.rank}
           </Typography>
           <Typography variant="h5" sx={{ fontWeight: 700, color: '#222', fontSize:17 , whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-            {player.name}
+            {player.name} , {player.position}
           </Typography>
         </Box>
         {/* 3️⃣ Info Row: Height, Weight, Grade, School */}
@@ -67,7 +67,7 @@ function PlayerCard({ player, onPick, disabled }) {
               borderRadius: 2,
               px: 5,
               py: 1.2,
-              background: '#0066cc',
+              background: '#0a7dfa',
               minWidth: 120,
               '&:hover': { background: '#0055aa' },
             }}

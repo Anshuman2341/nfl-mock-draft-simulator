@@ -1,9 +1,16 @@
 /* Main Footer */
 .footer {
-  background: linear-gradient(135deg, #0d47a1, #1976d2);
+  background: #0a7dfa;
   color: #ffffff;
-  padding: 60px 20px 30px;
-  margin-top: 10px;
+  padding: 36px 0 28px 0;
+  margin-top: 0;
+  width: 100vw;
+  min-height: 180px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Logo */
@@ -50,6 +57,16 @@
   padding-left: 60px;
   /* visually shifts description to the right while keeping it readable */
 }
+.footer-description {
+  max-width: 987px;
+  margin: 0 auto 18px auto;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.7;
+  opacity: 0.95;
+  display: block;
+  padding: 0 16px;
+}
 
 /* Social Icons */
 .footer-social {
@@ -57,6 +74,10 @@
   justify-content: center;
   gap: 15px;
   margin-bottom: 30px;
+  margin-top: 16px;
+}
+.footer-social svg {
+  color: #fff !important;
 }
 
 .footer-social button {
@@ -73,6 +94,24 @@
   color: #1976d2;
   transform: translateY(-3px);
 }
+.footer-social button {
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  color: #ffffff !important;
+  background: transparent;
+  width: 42px;
+  height: 42px;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-social button:hover {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
 
 /* Copyright */
 .footer-copyright {
@@ -80,6 +119,13 @@
   font-size: 12px;
   opacity: 0.8;
   letter-spacing: 0.5px;
+}
+.footer-copyright {
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
 }
 
 /* Responsive */
@@ -96,5 +142,25 @@
   .footer-social button {
     width: 38px;
     height: 38px;
+  }
+  .footer {
+    padding: 18px 0 12px 0;
+    min-height: 120px;
+  }
+  .footer-logo-img {
+    height: 32px;
+  }
+  .footer-logo {
+    font-size: 20px;
+    padding: 4px 10px;
+  }
+  .footer-description {
+    font-size: 13px;
+    padding: 0 6px;
+    margin-bottom: 10px;
+  }
+  .footer-social button {
+    width: 32px;
+    height: 32px;
   }
 }
