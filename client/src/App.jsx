@@ -3,10 +3,12 @@ import { useEffect, useState, useRef } from "react";
 import Layout from "./components/layout/Layout";
 import SelectionSection from "./components/sections/SelectionSection";
 import DraftSection from "./components/sections/DraftSection";
-import './App.css'
+import "./App.css";
+
+// Backend URL from Vercel Environment Variable
+const API_URL = import.meta.env.VITE_API_URL;
 
 function App() {
-
   const [state, setState] = useState(null);
   const [userTeamId, setUserTeamId] = useState(null);
   const [aiPicks, setAiPicks] = useState([]);
@@ -21,15 +23,18 @@ function App() {
   }, []);
 
   const fetchState = async () => {
-    const res = await fetch("http://localhost:5000/api/state");
-    const data = await res.json();
-    setState(data);
+    try {
+      const res = await fetch(`${API_URL}/api/state`);
+      const data = await res.json();
+      setState(data);
+    } catch (err) {
+      console.error("Failed to fetch state:", err);
+    }
   };
 
   /* ---------------- AI HANDLER ---------------- */
 
   useEffect(() => {
-
     if (!state || !userTeamId) return;
     if (state.round > 4) return;
 
@@ -41,7 +46,6 @@ function App() {
     }
 
     if (!aiRunning.current) {
-
       aiRunning.current = true;
 
       setTimeout(async () => {
@@ -49,50 +53,46 @@ function App() {
         aiRunning.current = false;
       }, 1500);
     }
-
   }, [state, userTeamId]);
 
-  // Page handle 
+  /* ---------------- PAGE HANDLER ---------------- */
 
   const handleTeamSelect = (teamId) => {
     setUserTeamId(teamId);
     setPage("draft");
   };
 
-
   /* ---------------- API CALLS ---------------- */
 
   const runAIPick = async () => {
-    await fetch("http://localhost:5000/api/ai-pick", {
-      method: "POST"
+    await fetch(`${API_URL}/api/ai-pick`, {
+      method: "POST",
     });
 
     fetchState();
   };
 
   const makePick = async (playerId) => {
-
-    await fetch("http://localhost:5000/api/pick", {
+    await fetch(`${API_URL}/api/pick`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ playerId })
+      body: JSON.stringify({ playerId }),
     });
 
     fetchState();
   };
 
   const resetDraft = async () => {
-    await fetch("http://localhost:5000/api/reset-draft", {
-      method: "POST"
+    await fetch(`${API_URL}/api/reset-draft`, {
+      method: "POST",
     });
 
     fetchState();
   };
 
   const fullReset = async () => {
-
-    await fetch("http://localhost:5000/api/full-reset", {
-      method: "POST"
+    await fetch(`${API_URL}/api/full-reset`, {
+      method: "POST",
     });
 
     setUserTeamId(null);
@@ -102,19 +102,16 @@ function App() {
   };
 
   const fetchAnalysis = async () => {
-
     try {
-
-      const res = await fetch(
-        "http://localhost:5000/api/ai-analysis",
-        { method: "POST" }
-      );
+      const res = await fetch(`${API_URL}/api/ai-analysis`, {
+        method: "POST",
+      });
 
       const data = await res.json();
 
       setAiPicks(data.players || []);
-
-    } catch {
+    } catch (err) {
+      console.error("AI analysis failed:", err);
       setAiPicks([]);
     }
   };
@@ -124,23 +121,17 @@ function App() {
   if (!state) return <h2>Loading...</h2>;
 
   return (
-
     <Layout>
-
       {/* PAGE 1: TEAM SELECTION */}
       {page === "selection" && (
-
         <SelectionSection
           onSelectTeam={handleTeamSelect}
           players={state.availablePlayers}
         />
-
       )}
-
 
       {/* PAGE 2: DRAFT SIMULATOR */}
       {page === "draft" && userTeamId && (
-
         <DraftSection
           state={state}
           userTeamId={userTeamId}
@@ -149,9 +140,7 @@ function App() {
           onReset={resetDraft}
           onFullReset={fullReset}
         />
-
       )}
-
     </Layout>
   );
 }
