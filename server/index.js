@@ -9,10 +9,14 @@ import { getAIPick } from "./aiService.js";
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "https://nfl-mock-draft-simulator.vercel.app",
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 app.use(express.json());
 
-const port =process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 const draft = new DraftEngine();
 
 app.get("/api/state", (req, res) => {
