@@ -6,11 +6,13 @@ import cors from "cors";
 import DraftEngine from "./draftEngine.js";
 import { getAIPick } from "./aiService.js";
 
+
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+const port =process.env.PORT;
 const draft = new DraftEngine();
 
 app.get("/api/state", (req, res) => {
@@ -69,6 +71,6 @@ app.post("/api/full-reset", (req, res) => {
   res.json(draft.getState());
 });
 
-app.listen(5000, () => {
-  console.log("Server running on 5000");
+app.listen(port, () => {
+  console.log(`serving on ${port}`);
 });
