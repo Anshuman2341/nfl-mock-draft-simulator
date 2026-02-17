@@ -1,3 +1,5 @@
+Loom Video Link - https://www.loom.com/share/3725c78f5d3e4f84af9dce824e0b947e
+
 🏈 NFL Draft Simulator
 A full-stack NFL Draft Simulation Platform that replicates the real NFL Draft experience using a custom draft engine, AI-controlled team logic powered by Groq AI, and a modern Material UI interface.
 
