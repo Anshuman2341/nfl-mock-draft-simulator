@@ -10,7 +10,11 @@ import { getAIPick } from "./aiService.js";
 const app = express();
 
 app.use(cors({
-  origin: "https://nfl-mock-draft-simulator.vercel.app",
+  origin: [
+    
+    "https://nfl-mock-draft-simulator.vercel.app",
+    "https://nfl-mock-draft-simulator-e1b1pmuqt-anshuman2341s-projects.vercel.app"],
+
   methods: ["GET", "POST"],
   credentials: true
 }));
